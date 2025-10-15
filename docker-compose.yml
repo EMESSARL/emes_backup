@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:latest
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres_db:5432/keycloak
+      KC_DB_USER: keycloak
+      KC_DB_SCHEMA: public
+      KC_DB_PASSWORD: ${KC_DB_PASSWORD}
+      KC_HOSTNAME: ${KC_HOSTNAME}
+      KC_HTTP_ENABLED: "false"  # Désactive HTTP, force HTTPS
+      KC_HEALTH_ENABLED: "true"
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      KC_HTTPS_CERTIFICATE_FILE: ${KC_HTTPS_CERTIFICATE_FILE}
+      KC_HTTPS_CERTIFICATE_KEY_FILE: ${KC_HTTPS_CERTIFICATE_KEY_FILE}
+      KC_THEME: custom-theme
+      KC_LOG_LEVEL: info
+      KC_LOG: console  # Logs uniquement en console pour éviter le problème de permissions
+      KC_CACHE: ispn
+      QUARKUS_HIBERNATE_ORM_PERSISTENCE_XML_IGNORE: "true"
+    ports:
+      - 8443:8443
+    restart: always
+    volumes:
+      - ${LOCAL_CERT}:${KC_HTTPS_CERTIFICATE_FILE}
+      - ${LOCAL_KEY}:${KC_HTTPS_CERTIFICATE_KEY_FILE}
+      - ./theme:/opt/keycloak/themes
+      # Volume des logs supprimé temporairement pour éviter l'erreur de permission
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    command: start
+    depends_on:
+      - postgres_db
+    networks:
+      - keycloak
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "2g"
+
+  postgres_db:
+    container_name: postgres-db
+    image: postgres
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: ${KC_DB_PASSWORD}
+      POSTGRES_MAX_CONNECTIONS: 200
+      POSTGRES_SHARED_BUFFERS: 256MB
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "keycloak"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - keycloak
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "1g"
+
+networks:
+  keycloak:
+    driver: bridge

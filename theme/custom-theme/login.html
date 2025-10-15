@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - OCVT</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #D4D1D1;
+        }
+        .btn-orange {
+            background-color: #F0A945;
+        }
+        .btn-orange:hover {
+            background-color: #d98a2e;
+        }
+        .btn-blue {
+            background-color: #3B5F83;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
+        .btn-blue:hover {
+            background-color: #2d4a66;
+        }
+        .header-bg {
+            background-color: #0A3764;
+            border-bottom: 1px solid #CCCCCC;
+        }
+        .footer-bg {
+            background-color: #2f2b45;
+            color: white;
+            border-top: 5px solid #0A3764;
+        }
+        .shadow-light {
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .shadow-button {
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+        .text-gray-custom {
+            color: #212529;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.875rem;
+            margin-top: -0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .form-label {
+            font-size: 0.75rem; /* Reduced size */
+            font-weight: 400; /* Removed bold */
+            color: #6B7280; /* Softer gray */
+            margin-bottom: 0.25rem; /* Reduced distance */
+        }
+        .form-input {
+            border: 1px solid #D1D5DB; /* Match input border from index.html */
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            background-color: #F9FAFB; /* Match input background from index.html */
+            color: #212529;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #3B5F83;
+            box-shadow: 0 0 0 3px rgba(59, 95, 131, 0.3);
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col justify-between items-center h-screen">
+    <!-- Header -->
+    <header class="w-full header-bg p-4 text-center">
+        <h1 class="text-2xl font-bold text-white">OCVT</h1>
+        <p class="text-sm text-white mt-2">OBSERVATOIRE INNOVA</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col justify-center items-center my-8 w-full max-w-lg">
+        <a href="#" class="btn-blue w-full">Retour à l'accueil</a>
+        <div class="bg-white p-8 rounded-lg shadow-light w-full text-center">
+            <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-12 mx-auto mb-4">
+                <g clip-path="url(#clip0_226_437)">
+                    <path d="M16.5142 36.851L9.50882 40.6738C9.1013 40.9067 8.7326 41.1784 8.3833 41.4694C12.4779 44.9236 17.7561 47 23.5196 47C29.2442 47 34.4836 44.943 38.5588 41.5471C38.1901 41.2366 37.7826 40.9455 37.3168 40.7126L29.8069 36.9674C28.8366 36.4822 28.2157 35.4926 28.2157 34.4059V31.4562C28.4291 31.2234 28.662 30.9129 28.9337 30.5442C29.9622 29.1082 30.7384 27.5169 31.2623 25.8481C32.2326 25.557 32.9312 24.6643 32.9312 23.597V20.4533C32.9312 19.7548 32.6207 19.1338 32.155 18.7069V14.166C32.155 14.166 33.0864 7.08299 23.5001 7.08299C13.9139 7.08299 14.8647 14.166 14.8647 14.166V18.7069C14.3796 19.1338 14.0885 19.7548 14.0885 20.4533V23.597C14.0885 24.4315 14.5154 25.1495 15.1752 25.5764C15.9514 28.9917 18.0278 31.4562 18.0278 31.4562V34.3477C18.0084 35.3761 17.4262 36.3464 16.5142 36.851Z" fill="#ECF0F1"/>
+                    <path d="M23.9073 -4.65778e-06C10.9251 -0.213465 0.232693 10.1296 -0.000172471 23.0925C-0.116605 30.4471 3.16292 37.0644 8.38298 41.4694C8.73228 41.1784 9.08158 40.9067 9.4891 40.6738L16.4945 36.8509C17.4065 36.3464 17.9887 35.3761 17.9887 34.3282V31.4562C17.9887 31.4562 15.9317 28.9917 15.1361 25.5764C14.4763 25.1495 14.0494 24.4315 14.0494 23.597V20.4533C14.0494 19.7547 14.3599 19.1338 14.8256 18.7069V14.166C14.8256 14.166 13.8941 7.08298 23.4804 7.08298C33.0667 7.08298 32.1547 14.166 32.1547 14.166V18.7069C32.6398 19.1338 32.9309 19.7547 32.9309 20.4533V23.597C32.9309 24.6449 32.2129 25.5376 31.262 25.8481C30.7187 27.5169 29.9424 29.1082 28.9334 30.5442C28.6811 30.9129 28.4288 31.2234 28.2154 31.4562V34.4059C28.2154 35.4926 28.8363 36.4822 29.8066 36.9674L37.3165 40.7126C37.7628 40.9455 38.1704 41.2172 38.5585 41.5471C43.6233 37.3167 46.9028 31.0099 47.0192 23.9075C47.2133 10.9253 36.8896 0.232861 23.9073 -4.65778e-06Z" fill="#556080"/>
+                </g>
+                <defs>
+                    <clipPath id="clip0_226_437">
+                        <rect width="47" height="47" fill="white"/>
+                    </clipPath>
+                </defs>
+            </svg>
+            <h2 class="text-2xl font-bold text-gray-custom mb-6">Se connecter</h2>
+            <p class="text-gray-custom mb-6">Veuillez vous identifier</p>
+            <form id="loginForm">
+                <div class="mb-4 text-left">
+                    <label for="username" class="form-label">Email ou nom d'utilisateur</label>
+                    <input type="text" id="username" placeholder="Email ou nom d'utilisateur" required class="form-input w-full">
+                </div>
+                <div class="mb-4 text-left">
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <input type="password" id="password" placeholder="Mot de passe" required class="form-input w-full">
+                </div>
+                <div class="flex items-center mb-4 text-left">
+                    <input type="checkbox" id="rememberMe" class="mr-2">
+                    <label for="rememberMe" class="text-gray-custom">Se souvenir de moi</label>
+                </div>
+                <button type="submit" class="w-full p-3 btn-orange text-white rounded hover:bg-orange-600 transition-all shadow-button">Se connecter</button>
+            </form>
+            <a href="#" class="text-blue-500 mt-8 block hover:underline">Mot de passe oublié ? Réinitialiser</a>
+            <a href="register.html" class="text-blue-500 mt-4 block hover:underline">Pas encore de compte ? S'inscrire</a>
+            <a href="#" class="text-blue-500 mt-4 block hover:underline">Activer la 2FA</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full footer-bg p-8 text-white">
+        <div class="text-center">
+            <p>MCVT • 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            console.log('Email ou nom d\'utilisateur:', username);
+            console.log('Mot de passe:', password);
+        });
+    </script>
+</body>
+</html>
