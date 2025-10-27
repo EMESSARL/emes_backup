@@ -51,7 +51,7 @@ services:
     image: postgres
     restart: always
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - ./data/db:/var/lib/postgresql
       - /etc/localtime:/etc/localtime:ro
     environment:
       POSTGRES_DB: keycloak
