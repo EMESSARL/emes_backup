@@ -1,6 +1,6 @@
 services:
   master:
-    image: bitnami/postgresql:17.4.0
+    image: bitnami/postgresql:17
     container_name: pg_master
     environment:
       - POSTGRESQL_PGAUDIT_LOG=READ,WRITE
